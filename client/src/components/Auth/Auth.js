@@ -14,35 +14,54 @@ import useStyles from './styles';
 import Input from './Input';
 import Icon from './icon';
 import { useHistory } from 'react-router-dom';
+import { AUTH } from '../../constants/actionTypes';
+import { signin, signup } from '../../actions/auth';
+
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const history = useHistory();
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleShowPassword = () =>
     setShowPassword(prevShowPassword => !prevShowPassword);
   const switchMode = () => {
     setIsSignup(prevIsSignup => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
   const googleSuccess = async res => {
     const result = res?.profileObj;
     const token = res?.tokenId;
     try {
-      dispatch({ type: 'AUTH', data: { result, token } });
+      dispatch({ type: AUTH, data: { result, token } });
       history.push('/');
     } catch (error) {
       console.log(error);
     }
   };
-  const googleFailure = () => {
-    console.log('Google Sign In was unsuccessful. Try Again Later');
+  const googleFailure = error => {
+    console.log(error);
   };
-  const state = null;
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
