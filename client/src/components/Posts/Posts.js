@@ -6,7 +6,12 @@ import useStyles from './styles';
 function Posts({ setCurrentId }) {
   const { posts, isLoading } = useSelector(state => state.posts);
   const classes = useStyles();
-  if (!posts?.length && !isLoading) return 'No posts';
+  if (!posts?.length && !isLoading)
+    return (
+      <h1>
+        <h3>No posts</h3>
+      </h1>
+    );
   return isLoading ? (
     <CircularProgress />
   ) : (

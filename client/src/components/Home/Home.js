@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Grid,
@@ -17,7 +17,7 @@ import Pagination from '../Pagination';
 
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import { getPosts, getPostsBySearch } from '../../actions/posts';
+import { getPostsBySearch } from '../../actions/posts';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

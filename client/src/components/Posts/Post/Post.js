@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   Card,
@@ -23,24 +23,34 @@ function Post({ post, setCurrentId }) {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
   const history = useHistory();
+  const [likes, setLikes] = useState(post?.likes);
+  const userId = user?.result.googleId || user?.result?._id;
+  const hasLikedPost = post.likes.find(like => like === userId);
+  const handleLike = async () => {
+    dispatch(likePost(post._id));
+    if (hasLikedPost) {
+      setLikes(post.likes.filter(id => id !== userId));
+    } else {
+      setLikes([...post.likes, userId]);
+    }
+  };
+
   const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find(
-        like => like === (user?.result?.googleId || user?.result?._id)
-      ) ? (
+    if (likes.length > 0) {
+      return likes.find(like => like === userId) ? (
         <>
           <ThumbUpAltIcon fontSize="small" />
           &nbsp;
-          {post.likes.length > 1
-            ? `You and ${post.likes.length - 1} ${
-                post.likes.length === 2 ? 'other' : 'others'
+          {likes.length > 1
+            ? `You and ${likes.length - 1} ${
+                likes.length === 2 ? 'other' : 'others'
               }`
-            : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}
+            : `${likes.length} like${likes.length > 1 ? 's' : ''}`}
         </>
       ) : (
         <>
           <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}
+          &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
         </>
       );
     }
@@ -107,7 +117,7 @@ function Post({ post, setCurrentId }) {
           size="small"
           color="primary"
           disabled={!user?.result}
-          onClick={() => dispatch(likePost(post._id))}
+          onClick={handleLike}
         >
           <Likes />
         </Button>

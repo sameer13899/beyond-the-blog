@@ -7,6 +7,7 @@ import {
   START_LOADING,
   END_LOADING,
   FETCH_POST,
+  COMMENT,
 } from '../constants/actionTypes';
 
 const actionResponse = (state = { isLoading: true, posts: [] }, action) => {
@@ -41,6 +42,15 @@ const actionResponse = (state = { isLoading: true, posts: [] }, action) => {
       return {
         ...state,
         post: action.payload,
+      };
+
+    case COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post._id === action.payload._id) return action.payload;
+          return post;
+        }),
       };
 
     case CREATE:
