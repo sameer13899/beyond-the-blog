@@ -77,7 +77,7 @@ function Home() {
               <TextField
                 name="search"
                 variant="outlined"
-                label="Search Memories"
+                label="Search by Title"
                 fullWidth
                 value={search}
                 onChange={e => setSearch(e.target.value)}
@@ -88,7 +88,7 @@ function Home() {
                 value={tags}
                 onAdd={chip => handleAddChip(chip)}
                 onDelete={chip => handleDeleteChip(chip)}
-                label="Search Tags"
+                label="Search Tags (comma separated)"
                 variant="outlined"
               />
               <Button

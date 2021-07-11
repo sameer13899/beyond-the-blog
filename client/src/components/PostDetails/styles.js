@@ -15,6 +15,9 @@ export default makeStyles(theme => ({
       flexDirection: 'column',
     },
   },
+  backgroundColor: {
+    background: '#CDF0EA',
+  },
   section: {
     borderRadius: '20px',
     margin: '10px',
@@ -48,5 +51,11 @@ export default makeStyles(theme => ({
     height: '200px',
     overflowY: 'auto',
     marginRight: '30px',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    alignItems: 'center',
+    background: '#CDF0EA',
   },
 }));

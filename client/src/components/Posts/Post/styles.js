@@ -48,9 +48,11 @@ export default makeStyles({
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+    background: '#CDF0EA',
   },
   cardAction: {
     display: 'block',
     textAlign: 'initial',
+    background: '#CDF0EA',
   },
 });

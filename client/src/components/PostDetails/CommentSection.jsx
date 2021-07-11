@@ -1,24 +1,29 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextField, Button } from '@material-ui/core/';
+import { Typography, TextField, Button, Paper } from '@material-ui/core/';
 import { useDispatch } from 'react-redux';
+
 import { commentPost } from '../../actions/posts';
 import useStyles from './styles';
 
 const CommentSection = ({ post }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const [comment, setComment] = useState('');
-  const [comments, setComments] = useState(post?.comments);
   const user = JSON.parse(localStorage.getItem('profile'));
+  const [comment, setComment] = useState('');
+  const dispatch = useDispatch();
+  const [comments, setComments] = useState(post?.comments);
+  const classes = useStyles();
   const commentsRef = useRef();
 
   const handleComment = async () => {
-    const finalComment = `${user.result.name}: ${comment}`;
-    const newComments = await dispatch(commentPost(finalComment, post._id));
-    setComments(newComments);
+    const newComments = await dispatch(
+      commentPost(`${user?.result?.name}: ${comment}`, post._id)
+    );
+
     setComment('');
-    commentsRef.current.scrollIntoView({ behaviour: 'smooth' });
+    setComments(newComments);
+
+    commentsRef.current.scrollIntoView({ behavior: 'smooth' });
   };
+
   return (
     <div>
       <div className={classes.commentsOuterContainer}>
@@ -34,7 +39,7 @@ const CommentSection = ({ post }) => {
           ))}
           <div ref={commentsRef} />
         </div>
-        {user.result.name && (
+        {user ? (
           <div style={{ width: '70%' }}>
             <Typography gutterBottom variant="h6">
               Write a comment
@@ -60,6 +65,12 @@ const CommentSection = ({ post }) => {
               Comment
             </Button>
           </div>
+        ) : (
+          <Paper className={classes.paper} elevation={6}>
+            <Typography variant="h6" align="center">
+              Please Sign In to add Comments.
+            </Typography>
+          </Paper>
         )}
       </div>
     </div>

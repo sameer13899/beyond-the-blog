@@ -5,8 +5,8 @@ import decode from 'jwt-decode';
 
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './styles';
-import memoriesLogo from '../../images/memories-Logo.png';
-import memoriesText from '../../images/memories-Text.png';
+import Logo from '../../images/Logo.png';
+import Text from '../../images/Text.png';
 import { LOGOUT } from '../../constants/actionTypes';
 
 function Navbar() {
@@ -32,13 +32,8 @@ function Navbar() {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Link to="/" className={classes.brandContainer}>
-        <img src={memoriesText} alt="icon" height="45px" />
-        <img
-          className={classes.image}
-          src={memoriesLogo}
-          alt="icon"
-          height="40px"
-        />
+        <img src={Text} alt="icon" height="45px" />
+        <img className={classes.image} src={Logo} alt="icon" height="40px" />
       </Link>
       <Toolbar className={classes.toolbar}>
         {user ? (

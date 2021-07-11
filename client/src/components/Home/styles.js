@@ -6,11 +6,13 @@ export default makeStyles(theme => ({
     marginBottom: '1rem',
     display: 'flex',
     padding: '16px',
+    background: '#CDF0EA',
   },
   pagination: {
     borderRadius: 4,
     marginTop: '1rem',
     padding: '16px',
+    background: '#CDF0EA',
   },
   gridContainer: {
     [theme.breakpoints.down('xs')]: {

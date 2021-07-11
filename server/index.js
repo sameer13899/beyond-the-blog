@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('Hello to memories API');
+  res.send('Hello to Beyond the Blog API');
 });
 
 app.use('/posts', postRoutes);

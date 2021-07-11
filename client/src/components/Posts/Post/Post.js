@@ -90,7 +90,10 @@ function Post({ post, setCurrentId }) {
           user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
             <Button
-              onClick={() => setCurrentId(post._id)}
+              onClick={e => {
+                setCurrentId(post._id);
+                e.stopPropagation();
+              }}
               style={{ color: 'white' }}
               size="small"
             >

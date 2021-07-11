@@ -7,7 +7,7 @@ CONNECTION_URL = ENTER YOUR MONGODB URL HERE
 
 # Update url in ./client/src/api/index.js file
 
-const url = 'http://localhost:5000/posts';
+baseURL = 'http://localhost:5000';
 
 ## To deploy in HEROKU
 
@@ -21,7 +21,7 @@ web: npm run start
 
 # Update url in ./client/src/api/index.js file
 
-const url = 'https://memories-project-sameer13899.herokuapp.com/posts';
+baseURL = 'https://beyond-the-blog.herokuapp.com';
 
 ## And follow Heroku instructions to deploy, visit https://www.heroku.com/
 

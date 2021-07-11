@@ -46,7 +46,11 @@ const Post = () => {
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   return (
-    <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
+    <Paper
+      className={classes.backgroundColor}
+      style={{ padding: '20px', borderRadius: '15px' }}
+      elevation={6}
+    >
       <div className={classes.card}>
         <div className={classes.section}>
           <Typography variant="h3" component="h2">
@@ -67,7 +71,6 @@ const Post = () => {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          {console.log(post)}
           {/* <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1">
             <strong>Realtime Chat - coming soon!</strong>
