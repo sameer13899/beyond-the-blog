@@ -8,6 +8,7 @@ import useStyles from './styles';
 import Logo from '../../images/Logo.png';
 import Text from '../../images/Text.png';
 import { LOGOUT } from '../../constants/actionTypes';
+import './myStyle.css';
 
 function Navbar() {
   const classes = useStyles();
@@ -32,7 +33,7 @@ function Navbar() {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <Link to="/" className={classes.brandContainer}>
-        <img src={Text} alt="icon" height="45px" />
+        <img src={Text} className="textLogo" alt="icon" height="45px" />
         <img className={classes.image} src={Logo} alt="icon" height="40px" />
       </Link>
       <Toolbar className={classes.toolbar}>
