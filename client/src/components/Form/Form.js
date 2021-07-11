@@ -63,7 +63,7 @@ function Form({ currentId, setCurrentId }) {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {currentId ? 'Editing' : 'Creating'} a Memory
+          {currentId ? 'Editing' : 'Creating'} a Post
         </Typography>
 
         <TextField
