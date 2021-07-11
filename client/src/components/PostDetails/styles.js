@@ -42,6 +42,7 @@ export default makeStyles(theme => ({
     padding: '20px',
     borderRadius: '15px',
     height: '39vh',
+    background: '#CDF0EA',
   },
   commentsOuterContainer: {
     display: 'flex',
