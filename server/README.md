@@ -24,3 +24,11 @@ web: npm run start
 const url = 'https://memories-project-sameer13899.herokuapp.com/posts';
 
 ## And follow Heroku instructions to deploy, visit https://www.heroku.com/
+
+cd server/
+git init
+heroku login
+heroku git:remote -a heroku-repo-name-here
+git add .
+git commit -m "make it better"
+git push heroku master -f

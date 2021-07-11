@@ -4,6 +4,7 @@ import FileBase from 'react-file-base64';
 import { Button, Paper, TextField, Typography } from '@material-ui/core';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
+import { useHistory } from 'react-router-dom';
 
 function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({
@@ -13,8 +14,10 @@ function Form({ currentId, setCurrentId }) {
     selectedFile: '',
   });
   const post = useSelector(state =>
-    currentId ? state.posts.find(p => p._id === currentId) : null
+    currentId ? state.posts.posts.find(p => p._id === currentId) : null
   );
+
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -28,7 +31,7 @@ function Form({ currentId, setCurrentId }) {
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, history));
     }
     clear();
   };
@@ -52,7 +55,7 @@ function Form({ currentId, setCurrentId }) {
     );
   }
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate
